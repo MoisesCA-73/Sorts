@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//matriz con un elemento anadido
 int* add(int *arr, int x, int &n)
 {
     int* aux = new int[n+1];
@@ -16,6 +17,7 @@ int* add(int *arr, int x, int &n)
     return aux;
 }
 
+//matriz con el primer elemento eliminado
 int* remove(int *arr, int &n)
 {
     int* aux = new int[n-1];
@@ -31,7 +33,8 @@ int* merge(int *arr1, int n1, int *arr2, int n2)
 {
     int n3 = 0;
     int* arr3 = new int [n3];
-
+    
+    //hasta que algun array se quede sin elementos
     while(n1 > 0 && n2 > 0)
     {
         if(arr1[0] > arr2[0])
@@ -45,7 +48,7 @@ int* merge(int *arr1, int n1, int *arr2, int n2)
             arr1 = remove(arr1,n1);
         }
     }
-
+    //a este punto un arreglo ya esta vacio asi que se anaden los demas
     while(n1 > 0)
     {
         arr3 = add(arr3,arr1[0],n3);
@@ -87,10 +90,10 @@ int* merge_sort(int *arr, int &n)
         arr2[i] = arr[i+n1];
     }
 
-    arr1 = merge_sort(arr1,n1);
+    arr1 = merge_sort(arr1,n1); //recursion para dividir los arrays
     arr2 = merge_sort(arr2,n2);
 
-    return merge(arr1,n1,arr2,n2);
+    return merge(arr1,n1,arr2,n2); // se comparan dos arrays entre si, se ordenan y se unen
 
 }
 
